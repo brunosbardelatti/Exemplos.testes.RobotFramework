@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.2.1 (Python 3.8.3 on win32)" generated="20210201 09:42:48.329" rpa="false">
+<suite id="s1" name="Exemplo API ServeRest" source="C:\Projetos\testesrobotframework\ExemploAPI_ServeRest\Exemplo_API_ServeRest.robot">
+<test id="s1-t1" name="Testar a API pública de estudos serverest">
+<kw name="Iniciar sessão na API serverest">
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+</arguments>
+<assign>
+<var>${HEADERS}</var>
+</assign>
+<msg timestamp="20210201 09:42:49.547" level="INFO">${HEADERS} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20210201 09:42:49.546" endtime="20210201 09:42:49.547"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>alias=${ALIAS}</arg>
+<arg>url=https://serverest.dev</arg>
+<arg>headers=${HEADERS}</arg>
+<arg>disable_warnings=1</arg>
+</arguments>
+<msg timestamp="20210201 09:42:49.548" level="INFO">Creating Session using : alias=API_serverest, url=https://serverest.dev, headers={'Content-Type': 'application/json'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20210201 09:42:49.547" endtime="20210201 09:42:49.548"></status>
+</kw>
+<status status="PASS" starttime="20210201 09:42:49.545" endtime="20210201 09:42:49.549"></status>
+</kw>
+<kw name="Cria dados aleatórios do usuário">
+<kw name="Name" library="FakerLibrary">
+<doc>:example 'John Doe'</doc>
+<assign>
+<var>${RANDOM_NOME}</var>
+</assign>
+<msg timestamp="20210201 09:42:49.550" level="INFO">${RANDOM_NOME} = Kamilly Freitas</msg>
+<status status="PASS" starttime="20210201 09:42:49.550" endtime="20210201 09:42:49.550"></status>
+</kw>
+<kw name="Email" library="FakerLibrary">
+<assign>
+<var>${RANDOM_EMAIL}</var>
+</assign>
+<msg timestamp="20210201 09:42:49.551" level="INFO">${RANDOM_EMAIL} = inunes@ig.com.br</msg>
+<status status="PASS" starttime="20210201 09:42:49.550" endtime="20210201 09:42:49.551"></status>
+</kw>
+<kw name="Password" library="FakerLibrary">
+<doc>Generate a random password of the specified ``length``.</doc>
+<assign>
+<var>${RANDOM_PWD}</var>
+</assign>
+<msg timestamp="20210201 09:42:49.552" level="INFO">${RANDOM_PWD} = F4GuAoIo%m</msg>
+<status status="PASS" starttime="20210201 09:42:49.552" endtime="20210201 09:42:49.552"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>nome=${RANDOM_NOME}</arg>
+<arg>email=${RANDOM_EMAIL}</arg>
+<arg>senha=${RANDOM_PWD}</arg>
+</arguments>
+<assign>
+<var>${USUARIO}</var>
+</assign>
+<msg timestamp="20210201 09:42:49.554" level="INFO">${USUARIO} = {'nome': 'Kamilly Freitas', 'email': 'inunes@ig.com.br', 'senha': 'F4GuAoIo%m'}</msg>
+<status status="PASS" starttime="20210201 09:42:49.552" endtime="20210201 09:42:49.554"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${USUARIO}</arg>
+</arguments>
+<msg timestamp="20210201 09:42:49.554" level="INFO">${USUARIO} = {'nome': 'Kamilly Freitas', 'email': 'inunes@ig.com.br', 'senha': 'F4GuAoIo%m'}</msg>
+<status status="PASS" starttime="20210201 09:42:49.554" endtime="20210201 09:42:49.555"></status>
+</kw>
+<status status="PASS" starttime="20210201 09:42:49.549" endtime="20210201 09:42:49.555"></status>
+</kw>
+<kw name="Obter Token">
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>email=${USUARIO.email}</arg>
+<arg>password=${USUARIO.senha}</arg>
+</arguments>
+<assign>
+<var>${BODY}</var>
+</assign>
+<msg timestamp="20210201 09:42:49.559" level="INFO">${BODY} = {'email': 'inunes@ig.com.br', 'password': 'F4GuAoIo%m'}</msg>
+<status status="PASS" starttime="20210201 09:42:49.557" endtime="20210201 09:42:49.559"></status>
+</kw>
+<kw name="POST On Session">
+<arguments>
+<arg>alias=${ALIAS}</arg>
+<arg>url=login</arg>
+<arg>json=${BODY}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20210201 09:42:49.576" level="FAIL">No keyword with name 'POST On Session' found.</msg>
+<status status="FAIL" starttime="20210201 09:42:49.576" endtime="20210201 09:42:49.576"></status>
+</kw>
+<status status="FAIL" starttime="20210201 09:42:49.556" endtime="20210201 09:42:49.577"></status>
+</kw>
+<status status="FAIL" starttime="20210201 09:42:49.544" endtime="20210201 09:42:49.579" critical="yes">No keyword with name 'POST On Session' found.</status>
+</test>
+<doc>Testes utilizando as novas keywords da RequestsLibrary na versão 8</doc>
+<status status="FAIL" starttime="20210201 09:42:48.335" endtime="20210201 09:42:49.585"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1">Critical Tests</stat>
+<stat pass="0" fail="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" id="s1" name="Exemplo API ServeRest">Exemplo API ServeRest</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
